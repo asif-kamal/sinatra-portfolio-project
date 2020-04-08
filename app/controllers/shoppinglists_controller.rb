@@ -1,4 +1,4 @@
-class ShoppingListController < ApplicationController
+class ShoppingListsController < ApplicationController
 
 
   get '/shoppinglists' do
