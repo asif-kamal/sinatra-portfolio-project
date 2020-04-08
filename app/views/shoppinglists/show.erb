@@ -1,14 +1,13 @@
-<h3><%= @shoppinglist.name %></h3>
+<h3><%= @shoppinglist.name_of_shopper %></h3>
 
-<p><%= @shoppinglist.description %></p>
-<p><%= @shoppinglist.instructions %></p>
-<p><%= @shoppinglist.prep_time %></p>
-<p><%= @shoppinglist.cook_time %></p>
+<p><%= @shoppinglist.num_of_items %></p>
+<p><%= @shoppinglist.time_of_pickup %></p>
+
 
 
 <% if Helpers.current_user(session) == @shoppinglist.user %>
-  <a href="/recipes/<%=@shoppinglist.id%>/edit">Edit Recipe</a>
-  <form action="/recipes/<%=@shoppinglist.id%>/delete" method="post">
+  <a href="/shoppinglists/<%=@shoppinglist.id%>/edit">Edit Shopping List</a>
+  <form action="/shoppinglists/<%=@shoppinglist.id%>/delete" method="post">
     <input type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">
   </form>

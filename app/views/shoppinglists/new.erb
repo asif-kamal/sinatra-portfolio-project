@@ -1,15 +1,11 @@
-<h3>Add a Recipe</h3>
+<h3>Add a Shopping List</h3>
 
-<form action="/recipes" method="post">
-  <label>Name: </label>
-  <input type="text" name="name" /><br />
-  <label>Description: </label>
-  <textarea rows="12" cols="80" type="text" name="description"></textarea><br />
-  <label>Instructions: </label>
-  <textarea type="text" name="instructions" rows="12" cols="80" > </textarea><br />
-  <label>Prep Time: </label>
-  <input type="text" name="prep_time" /><br />
-  <label>Cook Time: </label>
-  <input type="text" name="cook_time" /><br />
-  <input type="submit" value="Create Recipe">
+<form action="/shoppinglist" method="post">
+  <label>Name of Shopper: </label>
+  <input type="text" name="name_of_shopper" /><br />
+  <label>Number of items: </label>
+  <textarea rows="12" cols="80" type="text" name="num_of_items"></textarea><br />
+  <label>Time of Pickup: </label>
+  <textarea type="text" name="time_of_pickup" rows="12" cols="80" > </textarea><br />
+  <input type="submit" value="Create Shopping List">
 </form>
