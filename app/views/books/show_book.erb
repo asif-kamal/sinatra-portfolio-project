@@ -1,0 +1,44 @@
+<h1> <%= @book.title %> </h1>
+
+<h3>
+<p>Written by: <a href="/authors/<%= @book.author.slug %>"><%= @book.author.name %></a><p>
+</h3>
+
+<p style="font-size:120%">
+<% if @book.year_published != "" %>
+  Published in <%= display_date_as_bce_or_ce(@book.year_published.to_i) %>
+<% else %>
+  <%= @book.hypothetical_date_of_publication %>
+<% end %>
+</p>
+
+<p style="font-size:120%"><b>Description:</b> <%= @book.topics %></p>
+
+<br></br>
+<h3>This book was originally written in the following <a href="/languages">language(s):</a>
+    <ul>
+      <% @book.languages.each do |language| %><br>
+          <li style="font-size:80%"><%= language.name %></li>
+      <% end %>
+    </ul>
+</h3>
+
+<br></br>
+<h3>This book is part of the following library <a href="/genres">genre(s):</a>
+    <ul>
+      <% @book.genres.each do |genre| %><br>
+          <li style="font-size:80%"><%= genre.name %></li>
+      <% end %>
+    </ul>
+</h3>
+
+<h1>
+
+<% if logged_in? && @book.user_id == session[:user_id] %>
+  <a href="/books/<%=@book.slugtitle%>/edit">Edit This Book</a>
+<br>
+  <form action="<%=@book.slugtitle%>/delete" method="post">
+    <input id="hidden" type="hidden" name="_method" value="DELETE">
+    <input type="submit" style="font-size:60%; color: #297b5c;" value="Delete This Book"/>
+  </form>
+<% end %>

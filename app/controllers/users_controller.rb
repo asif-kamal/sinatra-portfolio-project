@@ -1,64 +1,61 @@
 class UsersController < ApplicationController
 
-
-  get '/users' do
-    if Helpers.is_logged_in?(session)
-      @users = User.all
-    else
-      redirect to '/'
-    end
-    erb :'users/index'
-  end
-
   get '/signup' do
-    if Helpers.is_logged_in?(session)
-      user = Helpers.current_user(session)
-      redirect to "/users/#{user.id}"
+    if !logged_in?
+      erb :'users/create_user'
+    else
+      redirect to '/index'
     end
-    erb :'users/signup'
   end
+
+
+
+  post '/signup' do
+    if params[:username] == "" || params[:email] == "" || params[:password] == ""
+      flash[:signup_page_message] = "Sorry, can you make sure to fill out all three fields: Name, Email, and Password?"
+      redirect to 'signup'
+    end
+
+    if !User.new(:username => params[:username], :password => params[:password]).valid?
+      flash[:signup_page_message] ="Oops, sorry but that name is already taken!"
+      redirect to 'signup'
+    elsif !User.new(:email => params[:email], :password => params[:password]).valid?
+      flash[:signup_page_message] ="Oops, sorry but that email address is already taken!"
+      redirect to 'signup'
+    else
+      @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+      @user.save
+      session[:user_id] = @user.id
+      redirect to '/library'
+    end
+  end
+
 
   get '/login' do
-    if Helpers.is_logged_in?(session)
-      user = Helpers.current_user(session)
-      redirect to "/users/#{user.id}"
+    if !logged_in?
+      erb :'users/login'
+    else
+      redirect '/library'
     end
-    erb :'users/login'
   end
 
   post '/login' do
-    user = User.find_by(username: params[:username])
+    user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect to "/users/#{user.id}"
+      redirect "/library"
     else
-      redirect to '/signup'
+      flash[:message_for_login_page] = "Oops, your username & password combo is incorrect; click here to sign in as a new user."
+      erb :'users/login'
     end
-  end
-
-  post '/signup' do
-    user = User.create(params)
-    if user.valid?
-      session[:user_id] = user.id
-      redirect to "/users/#{user.id}"
-    else
-      redirect to '/signup'
-    end
-  end
-
-  get '/users/:id' do
-    if Helpers.is_logged_in?(session) && User.find_by(id: params[:id])
-      @user = User.find_by(id: params[:id])
-      @recipes = @user.recipes
-    else
-      redirect to '/'
-    end
-    erb :'users/show'
   end
 
   get '/logout' do
-    session.clear
-    redirect to '/'
+    if logged_in?
+      session.destroy
+      redirect to '/login'
+    else
+      redirect to '/'
+    end
   end
-
 end

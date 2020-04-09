@@ -1,7 +1,0 @@
-<h3> <%= @user.username %> </h3>
-
-<ul>
-  <% @shoppinglists.each do |shoppinglist| %>
-    <li><a href="/shoppinglist/<%=shoppinglist.id%>"> <%= shoppinglist.name %> </a></li>
-  <%end%>
-</ul>

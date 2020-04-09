@@ -1,52 +1,44 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!doctype html>
+
+<html>
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-
-    <title>SinatraRecipes</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="stylesheet" href="/stylesheets/main.css" />
-<style>
-
-
-    .links {
-       float: right;
-        display: inline;
-        padding-left: 0;
-        margin-right: 4px;
-     }
-
-     .links a:link, .links a:visited, .links a:hover, .links a:active {
-        color: darkblue;
-     }
-</style>
+    <title>Language Learner Books Catalog</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
   </head>
   <body>
-    <div class="wrapper">
-      <% if Helpers.is_logged_in?(session) %>
-        <p class="links"><a href="/logout" class="logout">Log Out</a></p>
-        <p class="links"><a href="/users/<%=Helpers.current_user(session).id if Helpers.is_logged_in?(session)%>">My Recipes</a></p>
-        <p class="links"><a href="/recipes/new">New Recipe</a></p>
-        <p class="links"><a href="/recipes">All Recipes</a></p>
-        <p class="links"><a href="/users">All Users</a></p>
-      <%end%>
-        <%= yield %>
+    <!-- <style> nav {background: #fbff9c} </style> -->
+    <style> nav {background: linear-gradient(to right, #fbff9c , white)}</style>
+    <nav>
+      <% if logged_in? %>
 
-      <footer class="branding">
-        <small>&copy; 2020 <strong>SinatraRecipes</strong></small>
-      </footer>
+        <b><a href="/books/new">&emsp; Add a new book to the catalog </a></b>
+
+        <b><a href="/logout">&emsp; &emsp; &emsp; &emsp; Log Out </a></b>
+        <p>
+          <p1 style="font-size:220%; font-family:verdana; color: grey;">&emsp; Language Learner Books Catalog</p1>
+          <p1 style="font-size:170%; font-family:verdana; color: grey;">&emsp; &emsp; &emsp; &emsp; Welcome, <%=current_user.username %></p1>
+        </p>
+      <% else %>
+        <b><a href="/signup"> Sign Up </a></b>
+        <b><a href="/login">&emsp; &emsp; &emsp; &emsp; Sign In </a></b>
+        <p>
+          <p1 style="font-size:220%; font-family:verdana; color: grey;">&emsp; Language Learner Books Catalog</p1>
+          <p1 style="font-size:170%; font-family:verdana; color: grey;">&emsp; &emsp; &emsp; &emsp; Welcome, Guest</p1>
+        </p>
+      <%end %>
+
+    </nav>
+    <div class="container">
+      <%= yield %>
+
+
     </div>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <!--[if lt IE 7]>
-      <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
-      <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
-    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<br></br>
+<h3>
+  <p2 style="font-size: 80%; font-family:verdana;"><a href="/library">Click here to browse the library main menu</a></p1>
+</h3>
   </body>
 </html>
