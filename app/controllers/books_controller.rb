@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   # This request needs to go before <<get '/books/:slugtitle' do>> request.
   # Otherwise, the app will think that the "new" segment below is a dynamic (:slugtitle) route
   get '/books/new' do
-    
+
     if logged_in?
       erb :'books/create_book'
     else
@@ -62,7 +62,7 @@ class BooksController < ApplicationController
           flash[:message_for_new_book_page] = "Sorry, but that book title is already taken, please choose another title."
           redirect to '/books/new'
         end
-        @book.unknown_author
+      
       else
         flash[:message_for_login_page] = "Sorry, but you don't have permission to edit a book you didn't create."
         erb :'users/login'

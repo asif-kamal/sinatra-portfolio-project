@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :authors
+
   has_many :books
   # Here is how you can see the books:
   # redburd@ubuntu:~/Desktop/dev/sinatra-portfolio-project$ bundle exec rake db:console
