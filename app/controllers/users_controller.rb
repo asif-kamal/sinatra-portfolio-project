@@ -11,19 +11,19 @@ class UsersController < ApplicationController
 
 
   post '/signup' do
-    if params[:username] == "" || params[:email] == "" || params[:password] == ""
+    if params[:name] == "" || params[:email] == "" || params[:password] == ""
       flash[:signup_page_message] = "Sorry, can you make sure to fill out all three fields: Name, Email, and Password?"
       redirect to 'signup'
     end
 
-    if !User.new(:username => params[:username], :password => params[:password]).valid?
+    if !User.new(:name => params[:name], :password => params[:password]).valid?
       flash[:signup_page_message] ="Oops, sorry but that name is already taken!"
       redirect to 'signup'
     elsif !User.new(:email => params[:email], :password => params[:password]).valid?
       flash[:signup_page_message] ="Oops, sorry but that email address is already taken!"
       redirect to 'signup'
     else
-      @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+      @user = User.new(:name => params[:name], :email => params[:email], :password => params[:password])
       @user.save
       session[:user_id] = @user.id
       redirect to '/library'
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   post '/login' do
-    user = User.find_by(:username => params[:username])
+    user = User.find_by(:name => params[:name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/library"

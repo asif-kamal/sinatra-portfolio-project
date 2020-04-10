@@ -20,8 +20,10 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/library' do
-    erb :layout 
+    erb :library
   end
+
+
 
   helpers do
     # all ruby objects will now inherit from anything defined in this Object class

@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   get '/books' do
     @books = Book.all
+
     erb :'books/books'
   end
 
@@ -32,16 +33,18 @@ class BooksController < ApplicationController
     end
   end
 
-  get '/books/:slugtitle' do
-    @book = Book.find_by_slugtitle(params[:slugtitle])
+  get '/books/:title' do
+    @books = Book.all
+    @book = @books.find_by_title(params[:title])
     erb :'books/show_book'
   end
 
-  get '/books/:slugtitle/edit' do # This ie exactly the same as "'/books/new' do" above
+  get '/books/:title/edit' do # This ie exactly the same as "'/books/new' do" above
 
 
     if logged_in?
-      @book = Book.find_by_slugtitle(params[:slugtitle])
+      @books = Book.all
+      @book = @books.find_by_title(params[:title])
       if @book && @book.user == current_user
         erb :'books/edit_book'
       else
@@ -54,15 +57,16 @@ class BooksController < ApplicationController
   end
 
   # patch requests are used to send user edits
-  patch '/books/:slugtitle' do
+  patch '/books/:title' do
     if logged_in?
-      @book = Book.find_by_slugtitle(params[:slugtitle])
+      @books = Book.all
+      @book = @books.find_by_title(params[:title])
       if @book && @book.user == current_user
         if @book.update(params[:book]) != true
           flash[:message_for_new_book_page] = "Sorry, but that book title is already taken, please choose another title."
           redirect to '/books/new'
         end
-      
+
       else
         flash[:message_for_login_page] = "Sorry, but you don't have permission to edit a book you didn't create."
         erb :'users/login'
@@ -71,9 +75,10 @@ class BooksController < ApplicationController
     end
   end
 
-  delete '/books/:slugtitle/delete' do
+  delete '/books/:title/delete' do
     if logged_in?
-      @book = Book.find_by_slugtitle(params[:slugtitle])
+      @books = Book.all
+      @book = @books.find_by_title(params[:title])
       if @book.user_id == current_user.id
         @book.delete
         redirect to '/books'

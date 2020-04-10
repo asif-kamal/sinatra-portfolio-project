@@ -6,10 +6,5 @@ end
 
 use Rack::MethodOverride # This little ditty allows the Sinatra middleware to send patch and delete requests
 use UsersController
-use AuthorsController
 use BooksController
-use PeriodsController
-use LanguagesController
-use LocationsController
-use GenresController
 run ApplicationController

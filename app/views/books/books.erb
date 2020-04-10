@@ -13,11 +13,11 @@
   <ol style="font-size:140%">
     <% myarray = @books.sort_by {|obj| obj.title} %>
       <% myarray.each do |book| %>
-      <li><b><a href="/books/<%=book.slugtitle%>"><%= book.title %></a></b></li>
+      <li><b><a href="/books/<%=book.title%>"><%= book.title %></a></b></li>
         <ul style="font-size:80%">
           <%= book.topics %><br>
           <% if logged_in? && book.user_id == session[:user_id] %>
-            <a style="font-size:80%" href="/books/<%=book.slugtitle%>/edit">Edit This Book</a>
+            <a style="font-size:80%" href="/books/<%=book.title%>/edit">Edit This Book</a>
           <% end %>
         </ul>
       <br><br>

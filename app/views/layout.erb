@@ -17,7 +17,7 @@
         <b><a href="/logout">&emsp; &emsp; &emsp; &emsp; Log Out </a></b>
         <p>
           <p1 style="font-size:220%; font-family:verdana; color: grey;">&emsp; Language Learner Books Catalog</p1>
-          <p1 style="font-size:170%; font-family:verdana; color: grey;">&emsp; &emsp; &emsp; &emsp; Welcome, <%=current_user.username %></p1>
+          <p1 style="font-size:170%; font-family:verdana; color: grey;">&emsp; &emsp; &emsp; &emsp; Welcome, <%=current_user.name %></p1>
         </p>
       <% else %>
         <b><a href="/signup"> Sign Up </a></b>
@@ -38,7 +38,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <br></br>
 <h3>
-  <p2 style="font-size: 80%; font-family:verdana;"><a href="/library">Click here to browse the library main menu</a></p1>
+  <p2 style="font-size: 80%; font-family:verdana;"><a href="/books">Click here to browse your book collection</a></p2>
 </h3>
   </body>
 </html>
