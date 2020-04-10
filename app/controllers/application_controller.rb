@@ -1,49 +1,27 @@
 require './config/environment'
-require 'rack-flash'
-
+require 'sinatra/flash'
 class ApplicationController < Sinatra::Base
 
-  configure do
-    use Rack::Flash
-    set :public_folder, 'public'
-    set :views, 'app/views'
-    enable :sessions
-    set :session_secret, "fwitter_secret"
-  end
-
-  get '/' do
-    erb :index
-  end
-
-  get '/validation-failure' do
-    erb :'display_validation_failure'
-  end
-
-  get '/library' do
-    erb :library
-  end
-
-
-
-  helpers do
-    # all ruby objects will now inherit from anything defined in this Object class
-    # class Object
-    #   def true?
-    #     !!self
-    #   end
-    # end
-    # now I can do the following:
-    # current_user.true?
-    # ...and I will get a return value of "true" if there is a current user
-    # otherwise I will have to use the double negative: !!
-    # as is shown below:
-    def logged_in?
-      !!current_user
+    configure do
+      set :public_folder, 'public'
+      set :views, 'app/views'
+      register Sinatra::Flash
+      enable :sessions
+      set :session_secret, "password_security"
     end
-
-    def current_user
-      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+  
+    get '/' do
+      erb :index
+    end 
+  
+    helpers do
+      def logged_in?
+        !!session[:user_id]
+      end
+  
+      def current_user
+        User.find(session[:user_id])
+      end
     end
-
+  
   end
-end

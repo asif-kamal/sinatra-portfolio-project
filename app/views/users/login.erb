@@ -1,16 +1,11 @@
-<h2>User Login</h2>
 
-<h3>
-  <font color="#33ccff">
-    <% if flash.has?(:message_for_login_page) %>
-      <a href="/signup"><%= flash[:message_for_login_page] %></a>
-    <% end %>
-  </font>
-</h3>
-
-<h3>Sign in below if you're a current user</h3>
+<div class='content_header'>
+<h2>Log In</h2>
+</div>
+<div class='forms'>
 <form action="/login" method="POST">
-  <p>Name: <input type="text" name="username"></p>
-  <p>Password: <input type="text" name="password"></p>
-  <input class="btn btn-primary" type="submit" value="submit">
+  <input type="text" name="username" placeholder="Username:">
+  <input type="password" name="password" placeholder="Password:">
+  <input type="submit" value="submit">
 </form>
+</div>

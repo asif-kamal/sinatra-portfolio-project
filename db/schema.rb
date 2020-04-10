@@ -10,24 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200409213309) do
+ActiveRecord::Schema.define(version: 20180323212939) do
 
-  create_table "book_languages", force: :cascade do |t|
-    t.string "language"
-    t.integer "book_id"
-  end
-
-  create_table "books", force: :cascade do |t|
-    t.string "title"
-    t.integer "year_published"
-    t.string "topics"
-    t.string "author"
-    t.integer "book_language_id"
+  create_table "projects", force: :cascade do |t|
+    t.string "materials"
+    t.text "instructions"
     t.integer "user_id"
+    t.string "name"
+    t.string "image_url"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
     t.string "email"
     t.string "password_digest"
   end

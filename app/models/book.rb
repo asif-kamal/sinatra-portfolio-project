@@ -1,7 +1,7 @@
 class Book < ActiveRecord::Base
 
   belongs_to :user
-  has_many :language, through: :book_languages
+  has_many :languages, through: :book_languages
 
 
 
