@@ -78,24 +78,21 @@
 a:link, a:visited {
   background-color: white;
   color: black;
-  border: 2px solid #f175dd;
+  border: 2px solid ##0000FF;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
 }
 
-a:hover, a:active {
-  background-color:#f175dd;
-  color: white;
-}
+
 
 .header {
   height: 100px;
   border-bottom: 2px solid #ccc;
   padding-bottom: 15px;
 }
-  
+
   .wrapper {
     background: #fff;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -110,7 +107,7 @@ a:hover, a:active {
   h1 {
     font-size: 36px;
     line-height: 54px;
-    
+
   }
 
   h2 {
