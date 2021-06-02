@@ -7,7 +7,9 @@ Bundler.require(:default, ENV['SINATRA_ENV'])
 #   :adapter => "sqlite3",
 #   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
 # )
+require 'active_record'
 
+ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/db')
 
 require './app/models/concerns/slugify'
 require_all 'app'
