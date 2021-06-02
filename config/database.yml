@@ -3,9 +3,9 @@ development:
     encoding: unicode   
     database: development
     pool: 2
-production:
-    adapter: postgresql
-    encoding: unicode   
-    pool: 5
-    host: <%= ENV['DATABASE_HOST'] %>
-    database: production
+# production:
+#     adapter: postgresql
+#     encoding: unicode   
+#     pool: 5
+#     host: <%= ENV['DATABASE_HOST'] %>
+#     database: production
